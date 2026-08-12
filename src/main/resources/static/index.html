@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Spring AI Chatbot</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #eef2ff, #f8fafc);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Main Chat Window */
+        .chat-container {
+            width: 900px;
+            height: 90vh;
+            max-width: 95%;
+            background: #ffffff;
+            border-radius: 22px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+        }
+
+        /* Header */
+        .chat-header {
+            height: 75px;
+            padding: 15px 25px;
+            background: linear-gradient(135deg, #2563eb, #4f46e5);
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .bot-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 23px;
+        }
+
+        .header-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-title {
+            font-size: 19px;
+            font-weight: 600;
+        }
+
+        .header-status {
+            font-size: 12px;
+            margin-top: 3px;
+            opacity: 0.85;
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            background: #4ade80;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        /* Chat Messages */
+        .chat-box {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            background: #f8fafc;
+            scroll-behavior: smooth;
+        }
+
+        /* Scrollbar */
+        .chat-box::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-box::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+
+        /* Message */
+        .message {
+            display: flex;
+            margin-bottom: 22px;
+            animation: fadeIn 0.25s ease;
+        }
+
+        .user {
+            justify-content: flex-end;
+        }
+
+        .bot {
+            justify-content: flex-start;
+        }
+
+        .message-wrapper {
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+            max-width: 75%;
+        }
+
+        .user .message-wrapper {
+            flex-direction: row-reverse;
+        }
+
+        /* Avatar */
+        .avatar {
+            width: 35px;
+            height: 35px;
+            min-width: 35px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+        }
+
+        .bot-avatar {
+            background: #e0e7ff;
+        }
+
+        .user-avatar {
+            background: #2563eb;
+            color: white;
+        }
+
+        /* Message Bubble */
+        .message-content {
+            padding: 13px 17px;
+            border-radius: 18px;
+            line-height: 1.6;
+            font-size: 15px;
+            word-wrap: break-word;
+        }
+
+        .user .message-content {
+            background: linear-gradient(135deg, #2563eb, #4f46e5);
+            color: white;
+            border-bottom-right-radius: 5px;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        .bot .message-content {
+            background: white;
+            color: #1f2937;
+            border: 1px solid #e5e7eb;
+            border-bottom-left-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Input Section */
+        .input-area {
+            padding: 18px 25px;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            background: #f8fafc;
+            border: 1px solid #dbe1ea;
+            border-radius: 16px;
+            padding: 6px 7px 6px 16px;
+            transition: 0.2s;
+        }
+
+        .input-wrapper:focus-within {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        #messageInput {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 15px;
+            padding: 10px 5px;
+            color: #111827;
+        }
+
+        #messageInput::placeholder {
+            color: #9ca3af;
+        }
+
+        #sendButton {
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #2563eb, #4f46e5);
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+
+        #sendButton:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        #sendButton:active {
+            transform: scale(0.95);
+        }
+
+        #sendButton:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .input-hint {
+            text-align: center;
+            font-size: 11px;
+            color: #9ca3af;
+            margin-top: 9px;
+        }
+
+        /* Typing Animation */
+        .typing {
+            display: flex;
+            gap: 4px;
+            padding: 5px 2px;
+        }
+
+        .typing span {
+            width: 7px;
+            height: 7px;
+            background: #94a3b8;
+            border-radius: 50%;
+            animation: typing 1.2s infinite;
+        }
+
+        .typing span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+
+            30% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+
+            .chat-container {
+                width: 100%;
+                height: 100vh;
+                max-width: 100%;
+                border-radius: 0;
+            }
+
+            .chat-box {
+                padding: 20px 15px;
+            }
+
+            .message-wrapper {
+                max-width: 88%;
+            }
+
+            .chat-header {
+                padding: 15px;
+            }
+
+            .input-area {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="chat-container">
+
+    <!-- Header -->
+    <div class="chat-header">
+
+        <div class="bot-icon">
+            🤖
+        </div>
+
+        <div class="header-text">
+
+            <div class="header-title">
+                Spring AI Assistant
+            </div>
+
+            <div class="header-status">
+                <span class="status-dot"></span>
+                Powered by Spring Boot + Ollama
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Chat Messages -->
+    <div class="chat-box" id="chatBox">
+
+        <!-- Initial Bot Message -->
+        <div class="message bot">
+
+            <div class="message-wrapper">
+
+                <div class="avatar bot-avatar">
+                    🤖
+                </div>
+
+                <div class="message-content">
+                    Hello! PIYUSH 👋
+                    <br>
+                    I'm your Spring AI assistant.
+                    <br>
+                    <br>
+                    Ask me anything about Java, Spring Boot, or programming.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Input -->
+    <div class="input-area">
+
+        <div class="input-wrapper">
+
+            <input
+                    type="text"
+                    id="messageInput"
+                    placeholder="Message Spring AI..."
+                    autocomplete="off"
+            />
+
+            <button id="sendButton" title="Send message">
+                ➤
+            </button>
+
+        </div>
+
+        <div class="input-hint">
+            Press Enter to send
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    const input = document.getElementById("messageInput");
+    const sendButton = document.getElementById("sendButton");
+    const chatBox = document.getElementById("chatBox");
+
+
+    function addMessage(message, type) {
+
+        const messageDiv = document.createElement("div");
+
+        messageDiv.className = "message " + type;
+
+
+        const wrapper = document.createElement("div");
+
+        wrapper.className = "message-wrapper";
+
+
+        const avatar = document.createElement("div");
+
+        avatar.className =
+            "avatar " +
+            (type === "bot" ? "bot-avatar" : "user-avatar");
+
+        avatar.textContent =
+            type === "bot" ? "🤖" : "👤";
+
+
+        const content = document.createElement("div");
+
+        content.className = "message-content";
+
+        content.textContent = message;
+
+
+        wrapper.appendChild(avatar);
+        wrapper.appendChild(content);
+
+        messageDiv.appendChild(wrapper);
+
+        chatBox.appendChild(messageDiv);
+
+
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+
+    async function sendMessage() {
+
+        const message = input.value.trim();
+
+        if (!message) {
+            return;
+        }
+
+
+        // Show user message
+        addMessage(message, "user");
+
+
+        // Clear input
+        input.value = "";
+
+
+        // Disable button
+        sendButton.disabled = true;
+
+
+        try {
+
+            /*
+             * Your Spring Boot API
+             *
+             * POST
+             * http://localhost:8080/api/chat
+             */
+
+            const response = await fetch("/api/chat", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "text/plain"
+                },
+
+                body: message
+            });
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "HTTP Error: " + response.status
+                );
+
+            }
+
+
+            const aiResponse = await response.text();
+
+
+            // Display AI response
+            addMessage(aiResponse, "bot");
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            addMessage(
+                "❌ Unable to connect to the AI server.",
+                "bot"
+            );
+
+        } finally {
+
+            sendButton.disabled = false;
+
+            input.focus();
+        }
+    }
+
+
+    // Send button
+    sendButton.addEventListener(
+        "click",
+        sendMessage
+    );
+
+
+    // Press Enter
+    input.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Enter") {
+
+                event.preventDefault();
+
+                sendMessage();
+            }
+        }
+    );
+
+</script>
+
+</body>
+</html>
