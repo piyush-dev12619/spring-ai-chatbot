@@ -1,0 +1,261 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 264241152 bytes. Error detail: G1 virtual space
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   This process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Zero Based Compressed Oops mode in which the Java heap is
+#     placed in the first 32GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 32GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_windows.cpp:3714), pid=30392, tid=38988
+#
+# JRE version:  (21.0.11+10) (build )
+# Java VM: OpenJDK 64-Bit Server VM (21.0.11+10-LTS, mixed mode, emulated-client, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2025.3.1\lib\idea_rt.jar=57952 -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 com.piyush.firstproject.springai.SpringaiApplication
+
+Host: 11th Gen Intel(R) Core(TM) i5-1145G7 @ 2.60GHz, 8 cores, 15G,  Windows 11 , 64 bit Build 26100 (10.0.26100.7920)
+Time: Mon Aug 31 16:41:15 2026 India Standard Time elapsed time: 2.037185 seconds (0d 0h 0m 2s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000002857751d680):  JavaThread "Unknown thread" [_thread_in_vm, id=38988, stack(0x000000a6f8800000,0x000000a6f8900000) (1024K)]
+
+Stack: [0x000000a6f8800000,0x000000a6f8900000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x6d7e19]
+V  [jvm.dll+0x8b5096]
+V  [jvm.dll+0x8b764e]
+V  [jvm.dll+0x8b7d33]
+V  [jvm.dll+0x284596]
+V  [jvm.dll+0x6d4735]
+V  [jvm.dll+0x6c845a]
+V  [jvm.dll+0x35ef08]
+V  [jvm.dll+0x366b46]
+V  [jvm.dll+0x3b7c2e]
+V  [jvm.dll+0x3b7ed8]
+V  [jvm.dll+0x33310c]
+V  [jvm.dll+0x333c5b]
+V  [jvm.dll+0x87f04b]
+V  [jvm.dll+0x3c4bb1]
+V  [jvm.dll+0x868295]
+V  [jvm.dll+0x457c41]
+V  [jvm.dll+0x459831]
+C  [jli.dll+0x52dc]
+C  [ucrtbase.dll+0x37b0]
+C  [KERNEL32.DLL+0x2e8d7]
+C  [ntdll.dll+0x8c48c]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00007fff7beeb1c8, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+Total: 0
+
+Other Threads:
+  0x0000028577585620 WorkerThread "GC Thread#0"                     [id=31936, stack(0x000000a6f8900000,0x000000a6f8a00000) (1024K)]
+  0x0000028577596520 ConcurrentGCThread "G1 Main Marker"            [id=27672, stack(0x000000a6f8a00000,0x000000a6f8b00000) (1024K)]
+  0x00000285775991f0 WorkerThread "G1 Conc#0"                       [id=27076, stack(0x000000a6f8b00000,0x000000a6f8c00000) (1024K)]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007fff7b5e57f7]
+VM state: not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007fff7bf5f670] Heap_lock - owner thread: 0x000002857751d680
+
+Heap address: 0x0000000704000000, size: 4032 MB, Compressed Oops mode: Zero based, Oop shift amount: 3
+
+CDS archive(s) mapped at: [0x0000000000000000-0x0000000000000000-0x0000000000000000), size 0, SharedBaseAddress: 0x0000000800000000, ArchiveRelocationMode: 1.
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0, Narrow klass range: 0x0
+
+GC Precious Log:
+ CardTable entry size: 512
+ Card Set container configuration: InlinePtr #cards 4 size 8 Array Of Cards #cards 16 size 48 Howl #buckets 8 coarsen threshold 3686 Howl Bitmap #cards 512 size 80 coarsen threshold 460 Card regions per heap region 1 cards per card region 4096
+
+Heap:
+ garbage-first heap   total 0K, used 0K [0x0000000704000000, 0x0000000800000000)
+  region size 2048K, 0 young (0K), 0 survivors (0K)
+
+[error occurred during error reporting (printing heap information), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007fff7b9d1789]
+GC Heap History (0 events):
+No events
+
+Dll operation events (1 events):
+Event: 0.052 Loaded shared library C:\Users\piyushkumar\.jdks\temurin-21.0.11\bin\java.dll
+
+Deoptimization events (0 events):
+No events
+
+Classes loaded (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+ZGC Phase Switch (0 events):
+No events
+
+VM Operations (0 events):
+No events
+
+Memory protections (0 events):
+No events
+
+Nmethod flushes (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+0x00007ff60fb00000 - 0x00007ff60fb0e000 	C:\Users\piyushkumar\.jdks\temurin-21.0.11\bin\java.exe
+0x00007ff802320000 - 0x00007ff802587000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ff8011a0000 - 0x00007ff801269000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007fffff940000 - 0x00007fffffd31000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffffebe0000 - 0x00007ffffed2b000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007fffe8600000 - 0x00007fffe861e000 	C:\Users\piyushkumar\.jdks\temurin-21.0.11\bin\VCRUNTIME140.dll
+0x00007fffd94f0000 - 0x00007fffd9508000 	C:\Users\piyushkumar\.jdks\temurin-21.0.11\bin\jli.dll
+0x00007ff800140000 - 0x00007ff800305000 	C:\WINDOWS\System32\USER32.dll
+0x00007fffe2860000 - 0x00007fffe2af3000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.26100.8037_none_3e092faae333b53b\COMCTL32.dll
+0x00007ffffed30000 - 0x00007ffffed57000 	C:\WINDOWS\System32\win32u.dll
+0x00007ff801fb0000 - 0x00007ff802059000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ff8003c0000 - 0x00007ff8003eb000 	C:\WINDOWS\System32\GDI32.dll
+0x00007fffffec0000 - 0x00007ffffffeb000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ff800010000 - 0x00007ff8000b3000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ff800530000 - 0x00007ff800561000 	C:\WINDOWS\System32\IMM32.DLL
+0x0000028575230000 - 0x0000028575246000 	C:\WINDOWS\System32\umppc21306.dll
+0x0000028575270000 - 0x0000028575284000 	C:\WINDOWS\System32\CsXumd64_21306.dll
+0x00007fffe8980000 - 0x00007fffe898c000 	C:\Users\piyushkumar\.jdks\temurin-21.0.11\bin\vcruntime140_1.dll
+0x00007fffc9340000 - 0x00007fffc93cd000 	C:\Users\piyushkumar\.jdks\temurin-21.0.11\bin\msvcp140.dll
+0x00007fff7b2a0000 - 0x00007fff7c042000 	C:\Users\piyushkumar\.jdks\temurin-21.0.11\bin\server\jvm.dll
+0x00007ff800470000 - 0x00007ff80052b000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ff800310000 - 0x00007ff8003b7000 	C:\WINDOWS\System32\sechost.dll
+0x00007ff8021c0000 - 0x00007ff8022d8000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ff802070000 - 0x00007ff8020e4000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffffea40000 - 0x00007ffffea9e000 	C:\WINDOWS\SYSTEM32\POWRPROF.dll
+0x00007ffff4540000 - 0x00007ffff4575000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffffd430000 - 0x00007ffffd43b000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffffea20000 - 0x00007ffffea34000 	C:\WINDOWS\SYSTEM32\UMPDC.dll
+0x00007ffffd810000 - 0x00007ffffd82b000 	C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+0x00007fffe85f0000 - 0x00007fffe85fa000 	C:\Users\piyushkumar\.jdks\temurin-21.0.11\bin\jimage.dll
+0x00007ffffc5e0000 - 0x00007ffffc822000 	C:\WINDOWS\SYSTEM32\DBGHELP.DLL
+0x00007ff801490000 - 0x00007ff801812000 	C:\WINDOWS\System32\combase.dll
+0x00007ff8010c0000 - 0x00007ff801197000 	C:\WINDOWS\System32\OLEAUT32.dll
+0x00007fffdf8f0000 - 0x00007fffdf92b000 	C:\WINDOWS\SYSTEM32\dbgcore.DLL
+0x00007fffff5d0000 - 0x00007fffff675000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007fffe4690000 - 0x00007fffe469f000 	C:\Users\piyushkumar\.jdks\temurin-21.0.11\bin\instrument.dll
+0x00007fffd9450000 - 0x00007fffd9470000 	C:\Users\piyushkumar\.jdks\temurin-21.0.11\bin\java.dll
+
+JVMTI agents:
+C:\Program Files\JetBrains\IntelliJ IDEA 2025.3.1\lib\idea_rt.jar path:none, loaded, not initialized, instrumentlib options:57952
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Users\piyushkumar\.jdks\temurin-21.0.11\bin;C:\WINDOWS\SYSTEM32;C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.26100.8037_none_3e092faae333b53b;C:\Users\piyushkumar\.jdks\temurin-21.0.11\bin\server
+
+VM Arguments:
+jvm_args: -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2025.3.1\lib\idea_rt.jar=57952 -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 
+java_command: com.piyush.firstproject.springai.SpringaiApplication
+java_class_path (initial): D:\springai\target\classes;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-starter-webmvc\4.1.0\spring-boot-starter-webmvc-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-starter\4.1.0\spring-boot-starter-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-starter-logging\4.1.0\spring-boot-starter-logging-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\ch\qos\logback\logback-classic\1.5.34\logback-classic-1.5.34.jar;C:\Users\piyushkumar\.m2\repository\ch\qos\logback\logback-core\1.5.34\logback-core-1.5.34.jar;C:\Users\piyushkumar\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.25.4\log4j-to-slf4j-2.25.4.jar;C:\Users\piyushkumar\.m2\repository\org\apache\logging\log4j\log4j-api\2.25.4\log4j-api-2.25.4.jar;C:\Users\piyushkumar\.m2\repository\org\slf4j\jul-to-slf4j\2.0.18\jul-to-slf4j-2.0.18.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\4.1.0\spring-boot-autoconfigure-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\jakarta\annotation\jakarta.annotation-api\3.0.0\jakarta.annotation-api-3.0.0.jar;C:\Users\piyushkumar\.m2\repository\org\yaml\snakeyaml\2.6\snakeyaml-2.6.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-starter-jackson\4.1.0\spring-boot-starter-jackson-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-jackson\4.1.0\spring-boot-jackson-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat\4.1.0\spring-boot-starter-tomcat-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat-runtime\4.1.0\spring-boot-starter-tomcat-runtime-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\apache\tomcat\embed\tomcat-embed-core\11.0.22\tomcat-embed-core-11.0.22.jar;C:\Users\piyushkumar\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\11.0.22\tomcat-embed-el-11.0.22.jar;C:\Users\piyushkumar\.m2\repository\org\apache\tomcat\embed\tomcat-embed-websocket\11.0.22\tomcat-embed-websocket-11.0.22.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-tomcat\4.1.0\spring-boot-tomcat-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-http-converter\4.1.0\spring-boot-http-converter-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot\4.1.0\spring-boot-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\spring-web\7.0.8\spring-web-7.0.8.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\spring-beans\7.0.8\spring-beans-7.0.8.jar;C:\Users\piyushkumar\.m2\repository\io\micrometer\micrometer-observation\1.17.0\micrometer-observation-1.17.0.jar;C:\Users\piyushkumar\.m2\repository\io\micrometer\micrometer-commons\1.17.0\micrometer-commons-1.17.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-webmvc\4.1.0\spring-boot-webmvc-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-servlet\4.1.0\spring-boot-servlet-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\spring-webmvc\7.0.8\spring-webmvc-7.0.8.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\spring-aop\7.0.8\spring-aop-7.0.8.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\spring-expression\7.0.8\spring-expression-7.0.8.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-starter-webflux\4.1.0\spring-boot-starter-webflux-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-starter-reactor-netty\4.1.0\spring-boot-starter-reactor-netty-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-reactor-netty\4.1.0\spring-boot-reactor-netty-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-netty\4.1.0\spring-boot-netty-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\io\netty\netty-common\4.2.15.Final\netty-common-4.2.15.Final.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-reactor\4.1.0\spring-boot-reactor-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\io\projectreactor\reactor-core\3.8.6\reactor-core-3.8.6.jar;C:\Users\piyushkumar\.m2\repository\org\reactivestreams\reactive-streams\1.0.4\reactive-streams-1.0.4.jar;C:\Users\piyushkumar\.m2\repository\org\jspecify\jspecify\1.0.0\jspecify-1.0.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-webflux\4.1.0\spring-boot-webflux-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-http-codec\4.1.0\spring-boot-http-codec-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\spring-webflux\7.0.8\spring-webflux-7.0.8.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-web-server\4.1.0\spring-boot-web-server-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\ai\spring-ai-starter-model-ollama\2.0.0\spring-ai-starter-model-ollama-2.0.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-starter-webclient\4.1.0\spring-boot-starter-webclient-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-webclient\4.1.0\spring-boot-webclient-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-http-client\4.1.0\spring-boot-http-client-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\io\projectreactor\netty\reactor-netty-http\1.3.6\reactor-netty-http-1.3.6.jar;C:\Users\piyushkumar\.m2\repository\io\netty\netty-codec-http\4.2.15.Final\netty-codec-http-4.2.15.Final.jar;C:\Users\piyushkumar\.m2\repository\io\netty\netty-buffer\4.2.15.Final\netty-buffer-4.2.15.Final.jar;C:\Users\piyushkumar\.m2\repository\io\netty\netty-transport\4.2.15.Final\netty-transport-4.2.15.Final.jar;C:\Users\piyushkumar\.m2\repository\io\netty\netty-codec-base\4.2.15.Final\netty-codec-base-4.2.15.Final.jar;C:\Users\piyushkumar\.m2\repository\io\netty\netty-codec-compression\4.2.15.Final\netty-codec-compression-4.2.15.Final.jar;C:\Users\piyushkumar\.m2\repository\io\netty\netty-handler\4.2.15.Final\netty-handler-4.2.15.Final.jar;C:\Users\piyushkumar\.m2\repository\io\netty\netty-codec-http2\4.2.15.Final\netty-codec-http2-4.2.15.Final.jar;C:\Users\piyushkumar\.m2\repository\io\netty\netty-codec-http3\4.2.15.Final\netty-codec-http3-4.2.15.Final.jar;C:\Users\piyushkumar\.m2\repository\io\netty\netty-transport-native-unix-common\4.2.15.Final\netty-transport-native-unix-common-4.2.15.Final.jar;C:\Users\piyushkumar\.m2\repository\io\netty\netty-resolver\4.2.15.Final\netty-resolver-4.2.15.Final.jar;C:\Users\piyushkumar\.m2\repository\io\netty\netty-codec-classes-quic\4.2.15.Final\netty-codec-classes-quic-4.2.15.Final.jar;C:\Users\piyushkumar\.m2\repository\io\netty\netty-codec-native-quic\4.2.15.Final\netty-codec-native-quic-4.2.15.Final-linux-x86_64.jar;C:\Users\piyushkumar\.m2\repository\io\netty\netty-codec-native-quic\4.2.15.Final\netty-codec-native-quic-4.2.15.Final-linux-aarch_64.jar;C:\Users\piyushkumar\.m2\repository\io\netty\netty-codec-native-quic\4.2.15.Final\netty-codec-native-quic-4.2.15.Final-osx-x86_64.jar;C:\Users\piyushkumar\.m2\repository\io\netty\netty-codec-native-quic\4.2.15.Final\netty-codec-native-quic-4.2.15.Final-osx-aarch_64.jar;C:\Users\piyushkumar\.m2\repository\io\netty\netty-codec-native-quic\4.2.15.Final\netty-codec-native-quic-4.2.15.Final-windows-x86_64.jar;C:\Users\piyushkumar\.m2\repository\io\netty\netty-resolver-dns\4.2.15.Final\netty-resolver-dns-4.2.15.Final.jar;C:\Users\piyushkumar\.m2\repository\io\netty\netty-codec-dns\4.2.15.Final\netty-codec-dns-4.2.15.Final.jar;C:\Users\piyushkumar\.m2\repository\io\netty\netty-resolver-dns-native-macos\4.2.15.Final\netty-resolver-dns-native-macos-4.2.15.Final-osx-x86_64.jar;C:\Users\piyushkumar\.m2\repository\io\netty\netty-resolver-dns-classes-macos\4.2.15.Final\netty-resolver-dns-classes-macos-4.2.15.Final.jar;C:\Users\piyushkumar\.m2\repository\io\netty\netty-transport-native-epoll\4.2.15.Final\netty-transport-native-epoll-4.2.15.Final-linux-x86_64.jar;C:\Users\piyushkumar\.m2\repository\io\netty\netty-transport-classes-epoll\4.2.15.Final\netty-transport-classes-epoll-4.2.15.Final.jar;C:\Users\piyushkumar\.m2\repository\io\projectreactor\netty\reactor-netty-core\1.3.6\reactor-netty-core-1.3.6.jar;C:\Users\piyushkumar\.m2\repository\io\netty\netty-handler-proxy\4.2.15.Final\netty-handler-proxy-4.2.15.Final.jar;C:\Users\piyushkumar\.m2\repository\io\netty\netty-codec-socks\4.2.15.Final\netty-codec-socks-4.2.15.Final.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-starter-restclient\4.1.0\spring-boot-starter-restclient-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-restclient\4.1.0\spring-boot-restclient-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\ai\spring-ai-autoconfigure-model-ollama\2.0.0\spring-ai-autoconfigure-model-ollama-2.0.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\ai\spring-ai-autoconfigure-retry\2.0.0\spring-ai-autoconfigure-retry-2.0.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\ai\spring-ai-autoconfigure-model-tool\2.0.0\spring-ai-autoconfigure-model-tool-2.0.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\ai\spring-ai-autoconfigure-model-chat-observation\2.0.0\spring-ai-autoconfigure-model-chat-observation-2.0.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\ai\spring-ai-autoconfigure-model-embedding-observation\2.0.0\spring-ai-autoconfigure-model-embedding-observation-2.0.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\ai\spring-ai-ollama\2.0.0\spring-ai-ollama-2.0.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\ai\spring-ai-model\2.0.0\spring-ai-model-2.0.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\ai\spring-ai-commons\2.0.0\spring-ai-commons-2.0.0.jar;C:\Users\piyushkumar\.m2\repository\io\micrometer\micrometer-core\1.17.0\micrometer-core-1.17.0.jar;C:\Users\piyushkumar\.m2\repository\org\hdrhistogram\HdrHistogram\2.2.2\HdrHistogram-2.2.2.jar;C:\Users\piyushkumar\.m2\repository\io\micrometer\context-propagation\1.2.1\context-propagation-1.2.1.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\ai\spring-ai-template-st\2.0.0\spring-ai-template-st-2.0.0.jar;C:\Users\piyushkumar\.m2\repository\org\antlr\ST4\4.3.4\ST4-4.3.4.jar;C:\Users\piyushkumar\.m2\repository\org\antlr\antlr-runtime\3.5.3\antlr-runtime-3.5.3.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\spring-messaging\7.0.8\spring-messaging-7.0.8.jar;C:\Users\piyushkumar\.m2\repository\org\antlr\antlr4-runtime\4.13.1\antlr4-runtime-4.13.1.jar;C:\Users\piyushkumar\.m2\repository\com\github\victools\jsonschema-module-jackson\5.0.0\jsonschema-module-jackson-5.0.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\ai\spring-ai-retry\2.0.0\spring-ai-retry-2.0.0.jar;C:\Users\piyushkumar\.m2\repository\tools\jackson\core\jackson-databind\3.1.4\jackson-databind-3.1.4.jar;C:\Users\piyushkumar\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.21\jackson-annotations-2.21.jar;C:\Users\piyushkumar\.m2\repository\tools\jackson\core\jackson-core\3.1.4\jackson-core-3.1.4.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\ai\spring-ai-client-chat\2.0.0\spring-ai-client-chat-2.0.0.jar;C:\Users\piyushkumar\.m2\repository\com\networknt\json-schema-validator\3.0.1\json-schema-validator-3.0.1.jar;C:\Users\piyushkumar\.m2\repository\com\ethlo\time\itu\1.14.0\itu-1.14.0.jar;C:\Users\piyushkumar\.m2\repository\org\slf4j\slf4j-api\2.0.18\slf4j-api-2.0.18.jar;C:\Users\piyushkumar\.m2\repository\io\swagger\core\v3\swagger-annotations-jakarta\2.2.38\swagger-annotations-jakarta-2.2.38.jar;C:\Users\piyushkumar\.m2\repository\com\github\victools\jsonschema-module-swagger-2\5.0.0\jsonschema-module-swagger-2-5.0.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\spring-context\7.0.8\spring-context-7.0.8.jar;C:\Users\piyushkumar\.m2\repository\com\knuddels\jtokkit\1.1.0\jtokkit-1.1.0.jar;C:\Users\piyushkumar\.m2\repository\com\github\victools\jsonschema-generator\5.0.0\jsonschema-generator-5.0.0.jar;C:\Users\piyushkumar\.m2\repository\com\fasterxml\classmate\1.7.3\classmate-1.7.3.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\ai\spring-ai-autoconfigure-model-chat-client\2.0.0\spring-ai-autoconfigure-model-chat-client-2.0.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\ai\spring-ai-autoconfigure-model-chat-memory\2.0.0\spring-ai-autoconfigure-model-chat-memory-2.0.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-starter-data-mongodb\4.1.0\spring-boot-starter-data-mongodb-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-starter-mongodb\4.1.0\spring-boot-starter-mongodb-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-mongodb\4.1.0\spring-boot-mongodb-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\mongodb\mongodb-driver-sync\5.8.0\mongodb-driver-sync-5.8.0.jar;C:\Users\piyushkumar\.m2\repository\org\mongodb\bson\5.8.0\bson-5.8.0.jar;C:\Users\piyushkumar\.m2\repository\org\mongodb\mongodb-driver-core\5.8.0\mongodb-driver-core-5.8.0.jar;C:\Users\piyushkumar\.m2\repository\org\mongodb\bson-record-codec\5.8.0\bson-record-codec-5.8.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-data-mongodb\4.1.0\spring-boot-data-mongodb-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-data-commons\4.1.0\spring-boot-data-commons-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-persistence\4.1.0\spring-boot-persistence-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\data\spring-data-commons\4.1.0\spring-data-commons-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\boot\spring-boot-transaction\4.1.0\spring-boot-transaction-4.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\spring-tx\7.0.8\spring-tx-7.0.8.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\data\spring-data-mongodb\5.1.0\spring-data-mongodb-5.1.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\ai\spring-ai-starter-model-chat-memory-repository-mongodb\2.0.0\spring-ai-starter-model-chat-memory-repository-mongodb-2.0.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\ai\spring-ai-autoconfigure-model-chat-memory-repository-mongodb\2.0.0\spring-ai-autoconfigure-model-chat-memory-repository-mongodb-2.0.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\ai\spring-ai-model-chat-memory-repository-mongodb\2.0.0\spring-ai-model-chat-memory-repository-mongodb-2.0.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\ai\spring-ai-starter-vector-store-mongodb-atlas\2.0.0\spring-ai-starter-vector-store-mongodb-atlas-2.0.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\ai\spring-ai-autoconfigure-vector-store-mongodb-atlas\2.0.0\spring-ai-autoconfigure-vector-store-mongodb-atlas-2.0.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\ai\spring-ai-autoconfigure-vector-store-observation\2.0.0\spring-ai-autoconfigure-vector-store-observation-2.0.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\ai\spring-ai-mongodb-atlas-store\2.0.0\spring-ai-mongodb-atlas-store-2.0.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\ai\spring-ai-rag\2.0.0\spring-ai-rag-2.0.0.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\ai\spring-ai-vector-store\2.0.0\spring-ai-vector-store-2.0.0.jar;C:\Users\piyushkumar\.m2\repository\org\projectlombok\lombok\1.18.46\lombok-1.18.46.jar;C:\Users\piyushkumar\.m2\repository\org\springframework\spring-core\7.0.8\spring-core-7.0.8.jar;C:\Users\piyushkumar\.m2\repository\commons-logging\commons-logging\1.3.6\commons-logging-1.3.6.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 4                                         {product} {ergonomic}
+     uint ConcGCThreads                            = 2                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 8                                         {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 2097152                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 264241152                                 {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 4227858432                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 2097152                                   {product} {ergonomic}
+   size_t MinHeapSize                              = 8388608                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 4096                                   {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 0                                      {pd product} {ergonomic}
+     bool ProfileInterpreter                       = false                                  {pd product} {command line}
+    uintx ProfiledCodeHeapSize                     = 0                                      {pd product} {ergonomic}
+   size_t SoftMaxHeapSize                          = 4227858432                             {manageable} {ergonomic}
+     intx TieredStopAtLevel                        = 1                                         {product} {command line}
+     bool UseCompressedOops                        = true                           {product lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags foldmultilines=false
+ #1: stderr all=off uptime,level,tags foldmultilines=false
+
+Release file:
+<release file has not been read>
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk-21.0.10.7
+PATH=C:\Program Files\Java\jdk-21.0.10.7\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\sonarqube\sonar\sonar-scanner-3.0.3.778-windows\bin;C:\Program Files\TortoiseSVN\bin;C:\Program Files\OpenSSL-Win64\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\piyushkumar\AppData\Local\Microsoft\WindowsApps;C:\Users\piyushkumar\AppData\Loc;C:\Program Files\nodejs\;C:\apache-maven-3.9.12-bin\apache-maven-3.9.12\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\Git\bin;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\OpenSSL-Win64\bin;C:\Users\piyushkumar\AppData\Local\Microsoft\WindowsApps;C:\sonarqube\sonar\sonar-scanner-3.0.3.778-windows\bin;C:\Users\piyushkumar\AppData\Roaming\npm;D:\MongoDB\Shell\;;C:\Users\piyushkumar\AppData\Local\Programs\Ollama
+USERNAME=piyushkumar
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+TMP=C:\Users\PIYUSH~1\AppData\Local\Temp
+TEMP=C:\Users\PIYUSH~1\AppData\Local\Temp
+
+
+
+
+Periodic native trim disabled
+
+---------------  S Y S T E M  ---------------
+
+OS:
+ Windows 11 , 64 bit Build 26100 (10.0.26100.7920)
+OS uptime: 11 days 5:58 hours
+Hyper-V role detected
+
+CPU: total 8 (initial active 8) (4 cores per cpu, 2 threads per core) family 6 model 140 stepping 1 microcode 0xb4, cx8, cmov, fxsr, ht, mmx, 3dnowpref, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, lzcnt, tsc, tscinvbit, avx, avx2, aes, erms, clmul, bmi1, bmi2, adx, avx512f, avx512dq, avx512cd, avx512bw, avx512vl, sha, fma, vzeroupper, avx512_vpopcntdq, avx512_vpclmulqdq, avx512_vaes, avx512_vnni, clflush, clflushopt, clwb, avx512_vbmi2, avx512_vbmi, hv, rdtscp, rdpid, fsrm, gfni, avx512_bitalg, f16c, cet_ibt, cet_ss, avx512_ifma
+Processor Information for processor 0
+  Max Mhz: 1498, Current Mhz: 1498, Mhz Limit: 1498
+Processor Information for processor 1
+  Max Mhz: 1498, Current Mhz: 1498, Mhz Limit: 1498
+Processor Information for processor 2
+  Max Mhz: 1498, Current Mhz: 1198, Mhz Limit: 1498
+Processor Information for processor 3
+  Max Mhz: 1498, Current Mhz: 1198, Mhz Limit: 1498
+Processor Information for processor 4
+  Max Mhz: 1498, Current Mhz: 1498, Mhz Limit: 1498
+Processor Information for processor 5
+  Max Mhz: 1498, Current Mhz: 1498, Mhz Limit: 1498
+Processor Information for processor 6
+  Max Mhz: 1498, Current Mhz: 1498, Mhz Limit: 1498
+Processor Information for processor 7
+  Max Mhz: 1498, Current Mhz: 1498, Mhz Limit: 1498
+
+Memory: 4k page, system-wide physical 16126M (2359M free)
+TotalPageFile size 41817M (AvailPageFile size 44M)
+current process WorkingSet (physical memory assigned to process): 13M, peak: 13M
+current process commit charge ("private bytes"): 56M, peak: 308M
+
+vm_info: OpenJDK 64-Bit Server VM (21.0.11+10-LTS) for windows-amd64 JRE (21.0.11+10-LTS), built on 2026-04-21T00:00:00Z by "admin" with MS VC++ 17.12 (VS2022)
+
+END.

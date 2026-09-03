@@ -11,8 +11,28 @@ spring:
   ai:
     ollama:
       base-url: ${OLLAMA_BASE_URL:http://localhost:11434}
+
       chat:
         model: ${OLLAMA_MODEL:llama3.2}
 
+      embedding:
+        model: nomic-embed-text
+
+    vectorstore:
+      mongodb:
+        initialize-schema: false
+        collection-name: vector_store
+        index-name: vector_index
+        path-name: embedding
+
 server:
   port: 8080
+
+debug: true
+
+logging:
+  level:
+    org.springframework.ai.chat.client.advisor: DEBUG
+    org.springframework.ai.chat.client: DEBUG
+    org.springframework.ai.vectorstore.mongodb: DEBUG
+    org.springframework.data.mongodb: DEBUG
